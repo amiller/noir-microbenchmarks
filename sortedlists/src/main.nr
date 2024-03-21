@@ -3,8 +3,14 @@ use dep::std::hash::poseidon2::Poseidon2;
 global N = ${CIRCUIT_SIZE};
 
 fn main(x: [u64; N]) -> pub (Field, Field) {
-    let xHash = Poseidon2::hash(x.map(|xi:u64| xi as Field), x.len());
+
+    // Sort x using advice
     let y = x.sort();
+
+    // Compute the hash of x
+    let xHash = 0;
+    let yHash = 0;
+    let xHash = Poseidon2::hash(x.map(|xi:u64| xi as Field), x.len());
     let yHash = Poseidon2::hash(y.map(|yi:u64| yi as Field), y.len());    
     (xHash, yHash)
 }

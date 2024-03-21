@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import re
 import numpy as np
 
-ns = np.array(range(4,13))
+ns = np.array(range(4,11))
 real_times = []
 cpu_times = []
 circuit_size = []
@@ -27,7 +27,7 @@ for n in ns:
     x = re.search('| (2\^\d+) |', info).group(1)
     opcodes,backendsize = re.findall(r'\d+', info)[-2:]
     print(opcodes, backendsize)
-    circuit_size.append(backendsize)
+    circuit_size.append(int(backendsize))
     
 plt.figure(0); plt.clf();
 plt.plot(2**ns, circuit_size);
@@ -43,7 +43,7 @@ plt.ylabel('Total CPU time')
 
 plt.figure(2); plt.clf();
 plt.plot(2**ns, real_times);
-plt.title('Proving committed lists are sorted: Circuit Size vs Input Size')
+plt.title('Proving committed lists are sorted: Real time')
 plt.xlabel('input size')
 plt.ylabel('Elapsed time')
 plt.show()
